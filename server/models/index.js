@@ -9,7 +9,27 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function (data) { console.log("in model", data); }
+    post: function(userData, cb) { insertUser(userData); }
   }
 };
+
+var insertUser = function(userObject){
+      //if there is a key of username then insert
+  console.log('Running insertUser');
+
+  if(userObject["username"] !== undefined){
+   userObject["password"] =  userObject["password"] || '';
+   //insert into user table, username and password
+   db.query(
+     'INSERT INTO users ' +
+     '(user_name, password) VALUES ("'+
+     userObject["username"] + '","' + userObject["password"]  +
+     '");',
+     function(err, rows, fields){
+       if(err) throw err;
+       }
+     }
+   );
+  }
+}
 

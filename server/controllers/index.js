@@ -24,8 +24,10 @@ module.exports = {
         models.users.post(req.body.username);
         res.end('posting username');
       })*/
-
-      models.users.post(req.body.username);
+      var user = req.body;
+      //var callback = models.users.insertUser;
+      models.users.post(user);
+      res.send("Adding " + req.body.username + "to users.");
     }
   }
 };
