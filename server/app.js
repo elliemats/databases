@@ -1,6 +1,14 @@
 var express = require('express');
 var db = require('./db');
 
+db.connect(function(err){
+  if(err){
+    throw err;
+  } else {
+    console.log('You are connected');
+  }
+});
+
 // Middleware
 var morgan = require('morgan');
 var parser = require('body-parser');
